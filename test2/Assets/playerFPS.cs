@@ -11,13 +11,12 @@ public class playerFPS : MonoBehaviour
     CharacterController characterController;
  
     //Vitesse de marche
-    public float walkingSpeed = 7.5f;
+    public float walkingSpeed = 35f;
  
     //Vitesse de course
-    public float runningSpeed = 15f;
+    public float runningSpeed = 35f;
  
-    //Vitesse de saut
-    public float jumpSpeed = 8f;
+    
  
     //Gravité
     float gravity = 20f;
@@ -26,7 +25,7 @@ public class playerFPS : MonoBehaviour
     Vector3 moveDirection;
  
     //Marche ou court ?
-    private bool isRunning = false;
+    
  
     //Rotation de la caméra
     float rotationX = 0;
@@ -62,32 +61,7 @@ public class playerFPS : MonoBehaviour
         // Y = axe haut/bas
         float speedY = moveDirection.y;
  
- 
-        //Est-ce qu'on appuie sur le bouton pour courir (ici : Shift Gauche) ?
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            //En train de courir
-            isRunning = true;
-        }
-        else
-        {
-            //En train de marcher
-            isRunning = false;
-        }
- 
-        // Est-ce que l'on court ?
-        if (isRunning)
-        {
-            //Multiplie la vitesse par la vitesse de course
-            speedX = speedX * runningSpeed;
-            speedZ = speedZ * runningSpeed;
-        }
-        else
-        {
-            //Multiplie la vitesse par la vitesse de marche
-            speedX = speedX * walkingSpeed;
-            speedZ = speedZ * walkingSpeed;
-        }
+        
  
          
  
@@ -97,16 +71,7 @@ public class playerFPS : MonoBehaviour
         moveDirection = forward * speedZ + right * speedX;
  
         
-        // Est-ce qu'on appuie sur le bouton de saut (ici : Espace)
-        if (Input.GetButton("Jump") && characterController.isGrounded)
-        {
- 
-            moveDirection.y = jumpSpeed;
-        }
-      else
-        {
-            moveDirection.y = speedY;
-        }
+        
  
  
         //Si le joueur ne touche pas le sol
